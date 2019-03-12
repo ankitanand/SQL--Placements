@@ -1,0 +1,18 @@
+https://www.hackerrank.com/challenges/placements/problem
+
+
+Select s.id,name, c.friend_id, p1.salary, c.salary  
+from students as s
+inner join 
+(
+    select f.id,f.friend_id, p.salary
+    from friends as f
+    inner join packages as p
+    on f.friend_id = p.id
+) as c
+on s.id = c.id
+inner join packages as p1
+on s.id = p1.id
+where c.salary > p1.salary
+group by s.id,name, c.friend_id, p1.salary, c.salary  
+
